@@ -42,20 +42,24 @@
     [self.images addObject:image];
 }
 
+- (void)removeAllImages {
+    [self.images removeAllObjects];
+}
+
 - (void)animate {
-    
+
     if (self.firstAnimation) {
         if (self.animationWidth) {
             self.customWidth = YES;
         }
     }
-    
+
     if (self.minFloatObjectSize > self.maxFloatObjectSize) {
         self.maxFloatObjectSize = self.minFloatObjectSize;
     }
-    
+
     CGFloat size = [self randomFloatBetween:self.minFloatObjectSize and:self.maxFloatObjectSize];
-    
+
     if (!self.customWidth) {
         switch (self.floatingShape) {
             case JRMFloatingShapeCurveLeft: {
@@ -74,24 +78,24 @@
             } break;
         }
     }
-    
+
     UIImage *image = [self.images objectAtIndex:[self randomIndex:[self.images count]]];
-    
+
     JRMFloatingImageView *floatingImageView = [[JRMFloatingImageView alloc] initWithImage:image];
-    
+
     if (self.varyAlpha) {
         floatingImageView.alpha = [self randomFloatBetween:.1 and:1];
     }
-    
+
     if (self.startingPointWidth) {
         CGFloat w = [self randomFloatBetween:(self.startingPoint.x - (self.startingPointWidth / 2)) and:(self.startingPoint.x + (self.startingPointWidth / 2))];
         [floatingImageView setFrame:CGRectMake(w, self.startingPoint.y - (size / 2), size, size)];
     } else {
         [floatingImageView setFrame:CGRectMake(self.startingPoint.x, self.startingPoint.y - (size / 2), size, size)];
     }
-    
+
     floatingImageView.delegate = self;
-    
+
     [self addSubview:floatingImageView];
     [floatingImageView start];
     self.firstAnimation = NO;

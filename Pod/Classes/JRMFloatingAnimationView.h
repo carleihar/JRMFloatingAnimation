@@ -48,7 +48,7 @@ typedef NS_ENUM(NSInteger, JRMFloatingShape) {
  */
 @property CGFloat animationWidth;
 /**
- *  Gives the impression of the images "popping" 
+ *  Gives the impression of the images "popping"
  *  before they are removed from the view.
  *  Default NO.
  */
@@ -99,11 +99,15 @@ typedef NS_ENUM(NSInteger, JRMFloatingShape) {
  *  Must init the animation with a starting point, or you may experience unintended behavior.
  */
 - (id)initWithStartingPoint:(CGPoint)startingPoint;
-/** 
+/**
  *  The images that make up the floating objects.
  *  At least one SQUARE image must be added.
  */
 - (void)addImage:(UIImage *)image;
+/**
+ *  Remove all images.
+ */
+- (void)removeAllImages;
 
 /**
  *  "Release" a floating object.
