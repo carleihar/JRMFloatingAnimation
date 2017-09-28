@@ -75,12 +75,19 @@
     CGFloat x = self.frame.origin.x;
     CGFloat y = self.frame.origin.y;
     [zigzagPath moveToPoint:CGPointMake(x, y)];
-    CGFloat w = [self randomFloatBetween:50 and:self.delegate.animationWidth];
-    CGFloat r = [self randomFloatBetween:self.delegate.minAnimationHeight and:self.delegate.maxAnimationHeight];
-    CGPoint cp1 = CGPointMake(x, y - (.75*r));
-    CGPoint cp2 = CGPointMake(x - w, y - (.25*r));
+    CGFloat randomXDelta = [self randomFloatBetween:50 and:self.delegate.animationWidth];
+    CGFloat randomYDelta = [self randomFloatBetween:self.delegate.minAnimationHeight and:self.delegate.maxAnimationHeight];
+    CGPoint cp1;
+    CGPoint cp2;
+    if (self.delegate.objectsShouldSink) {
+        cp1 = CGPointMake(x, y + (.75*randomYDelta));
+        cp2 = CGPointMake(x - randomXDelta, y + (.25*randomYDelta));
+    } else {
+        cp1 = CGPointMake(x, y - (.75*randomYDelta));
+        cp2 = CGPointMake(x - randomXDelta, y - (.25*randomYDelta));
+    }
     NSArray *controlPoints = [self mixUpControlPoints1:cp1 and2:cp2];
-    [zigzagPath addCurveToPoint:CGPointMake(x - w, y - r) controlPoint1:[[controlPoints objectAtIndex:0] CGPointValue] controlPoint2:[[controlPoints objectAtIndex:1] CGPointValue]];
+    [zigzagPath addCurveToPoint:CGPointMake(x - randomXDelta, y - randomYDelta) controlPoint1:[[controlPoints objectAtIndex:0] CGPointValue] controlPoint2:[[controlPoints objectAtIndex:1] CGPointValue]];
     return zigzagPath;
 }
 
@@ -89,12 +96,22 @@
     CGFloat x = self.frame.origin.x;
     CGFloat y = self.frame.origin.y;
     [zigzagPath moveToPoint:CGPointMake(x, y)];
-    CGFloat r = [self randomFloatBetween:self.delegate.minAnimationHeight and:self.delegate.maxAnimationHeight];
-    CGFloat w = [self randomFloatBetween:50 and:self.delegate.animationWidth];
-    CGPoint cp1 = CGPointMake(x, y - (.75*r));
-    CGPoint cp2 = CGPointMake(x + w, y - (.25*r));
+    CGFloat randomXDelta = [self randomFloatBetween:self.delegate.minAnimationHeight and:self.delegate.maxAnimationHeight];
+    CGFloat yDelta = [self randomFloatBetween:50 and:self.delegate.animationWidth];
+    CGPoint endPoint;
+    CGPoint cp1;
+    CGPoint cp2;
+    if (self.delegate.objectsShouldSink) {
+        endPoint = CGPointMake(x + yDelta, y + randomXDelta);
+        cp1 = CGPointMake(x, y + (.25*randomXDelta));
+        cp2 = CGPointMake(x - yDelta, y + (.75*randomXDelta));
+    } else {
+        endPoint = CGPointMake(x + yDelta, y - randomXDelta);
+        cp1 = CGPointMake(x, y - (.75*randomXDelta));
+        cp2 = CGPointMake(x - yDelta, y - (.25*randomXDelta));
+    }
     NSArray *controlPoints = [self mixUpControlPoints1:cp1 and2:cp2];
-    [zigzagPath addCurveToPoint:CGPointMake(x + w, y - r) controlPoint1:[[controlPoints objectAtIndex:0] CGPointValue] controlPoint2:[[controlPoints objectAtIndex:1] CGPointValue]];
+    [zigzagPath addCurveToPoint:endPoint controlPoint1:[[controlPoints objectAtIndex:0] CGPointValue] controlPoint2:[[controlPoints objectAtIndex:1] CGPointValue]];
     return zigzagPath;
 }
 
@@ -102,11 +119,16 @@
     UIBezierPath *zigzagPath = [[UIBezierPath alloc] init];
     CGFloat x = self.frame.origin.x;
     CGFloat y = self.frame.origin.y;
-    CGFloat r = [self randomFloatBetween:1 and:self.delegate.animationWidth];
-    CGFloat h = [self randomFloatBetween:-self.delegate.minAnimationHeight and:-self.delegate.maxAnimationHeight];
-    CGFloat ey = y + h + self.frame.size.height;
-    CGPoint cp1 = CGPointMake(x - r, (y + ey) / 2);
-    CGPoint cp2 = CGPointMake(x + r, cp1.y);
+    CGFloat randomXDelta = [self randomFloatBetween:1 and:self.delegate.animationWidth];
+    CGFloat yDelta;
+    if (self.delegate.objectsShouldSink) {
+        yDelta = [self randomFloatBetween: self.delegate.minAnimationHeight and: self.delegate.maxAnimationHeight];
+    } else {
+        yDelta = [self randomFloatBetween:-self.delegate.minAnimationHeight and:-self.delegate.maxAnimationHeight];
+    }
+    CGFloat ey = y + yDelta + self.frame.size.height;
+    CGPoint cp1 = CGPointMake(x - randomXDelta, (y + ey) / 2);
+    CGPoint cp2 = CGPointMake(x + randomXDelta, cp1.y);
     NSArray *controlPoints = [self mixUpControlPoints1:cp1 and2:cp2];
     [zigzagPath moveToPoint:CGPointMake(x, y)];
     [zigzagPath addCurveToPoint:CGPointMake(x, ey) controlPoint1:[[controlPoints objectAtIndex:0] CGPointValue] controlPoint2:[[controlPoints objectAtIndex:1] CGPointValue]];

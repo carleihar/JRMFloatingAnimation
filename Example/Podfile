@@ -1,12 +1,12 @@
 source 'https://github.com/CocoaPods/Specs.git'
+
+platform :ios, '9.0'
 use_frameworks!
 
-target 'JRMFloatingAnimation_Example', :exclusive => true do
+target 'JRMFloatingAnimation_Example' do
   pod 'JRMFloatingAnimation', :path => '../'
 end
 
-target 'JRMFloatingAnimation_Tests', :exclusive => true do
+target 'JRMFloatingAnimation_Tests' do
   pod 'JRMFloatingAnimation', :path => '../'
-
-  
 end
