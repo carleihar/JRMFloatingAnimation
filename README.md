@@ -31,7 +31,8 @@ You can add as many images to your view as you want, and they will be used rando
 
 There are a variety of different settings you can add to your animation view.
 
-* `startingPointWidth` - Varies the x of the starting point, with the starting point y being the middle. default is 0.
+* `startingPointWidth` - Varies the x of the starting point, with the starting point y being the middle. Default is 0.
+* `objectsShouldSink` - Reverses the animation so that the objects appear to fall (or sink) rather than float. Default is false.
 * `maxAnimationHeight` - The maximum height that the animation may go. Default is the distance from the top of the frame to the starting point y value.
 * `minAnimationHeight` - The minimum height that the animation may go. If this is larger than the maxAnimationHeight, they will swap. Default is 1/3 the maxAnimationHeight .
 * `animationWidth` - The maximum "width" of the bezier path's control points fro the object's starting point. Changing this may give you unexpected results. Defaults: 
