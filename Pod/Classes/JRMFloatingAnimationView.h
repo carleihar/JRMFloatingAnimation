@@ -109,6 +109,10 @@ typedef NS_ENUM(NSInteger, JRMFloatingShape) {
  *  At least one SQUARE image must be added.
  */
 - (void)addImage:(UIImage *)image;
+/**
+ *  Removes all images.
+ */
+- (void)removeAllImages;
 
 /**
  *  "Release" a floating object.

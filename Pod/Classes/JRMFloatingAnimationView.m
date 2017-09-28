@@ -43,6 +43,10 @@
     [self.images addObject:image];
 }
 
+- (void)removeImages {
+    [self.images removeAllObjects];
+}
+
 - (void)animate {
     
     if (self.firstAnimation) {
