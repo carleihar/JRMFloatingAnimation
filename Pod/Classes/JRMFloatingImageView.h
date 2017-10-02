@@ -11,7 +11,7 @@
 
 @protocol JRMFloatingImageViewDelegate;
 
-@interface JRMFloatingImageView : UIImageView
+@interface JRMFloatingImageView : UIImageView <CAAnimationDelegate>
 
 @property (nonatomic, weak) JRMFloatingAnimationView *delegate;
 

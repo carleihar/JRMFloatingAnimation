@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "JRMFloatingAnimation"
-  s.version          = "0.1.2"
+  s.version          = "0.1.3"
   s.summary          = "A floating animation that can be used for bubbles, clouds, music notes, or whatever your heart desires."
 
 # This description is used to generate tags and improve search results.

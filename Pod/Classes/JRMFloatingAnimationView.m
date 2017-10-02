@@ -26,13 +26,14 @@
         self.backgroundColor = [UIColor clearColor];
         self.images = [NSMutableArray new];
         self.floatingShape = JRMFloatingShapeStraight;
+        self.objectsShouldSink = NO;
         self.maxFloatObjectSize = 20;
         self.minFloatObjectSize = 10;
         self.animationDuration = 2;
         self.firstAnimation = YES;
         self.customWidth = NO;
         self.maxAnimationHeight = self.startingPoint.y;
-        self.minAnimationHeight = self.startingPoint.y * 1/3;
+        self.minAnimationHeight = fabs(self.startingPoint.y * 1/3);
         self.removeOnCompletion = YES;
     }
     return self;
@@ -40,6 +41,10 @@
 
 - (void)addImage:(UIImage *)image {
     [self.images addObject:image];
+}
+
+- (void)removeImages {
+    [self.images removeAllObjects];
 }
 
 - (void)animate {
@@ -85,9 +90,17 @@
     
     if (self.startingPointWidth) {
         CGFloat w = [self randomFloatBetween:(self.startingPoint.x - (self.startingPointWidth / 2)) and:(self.startingPoint.x + (self.startingPointWidth / 2))];
-        [floatingImageView setFrame:CGRectMake(w, self.startingPoint.y - (size / 2), size, size)];
+        if (self.objectsShouldSink) {
+            [floatingImageView setFrame:CGRectMake(w, self.startingPoint.y + (size / 2), size, size)];
+        } else {
+            [floatingImageView setFrame:CGRectMake(w, self.startingPoint.y - (size / 2), size, size)];
+        }
     } else {
-        [floatingImageView setFrame:CGRectMake(self.startingPoint.x, self.startingPoint.y - (size / 2), size, size)];
+        if (self.objectsShouldSink) {
+            [floatingImageView setFrame:CGRectMake(self.startingPoint.x, self.startingPoint.y + (size / 2), size, size)];
+        } else {
+            [floatingImageView setFrame:CGRectMake(self.startingPoint.x, self.startingPoint.y - (size / 2), size, size)];
+        }
     }
     
     floatingImageView.delegate = self;

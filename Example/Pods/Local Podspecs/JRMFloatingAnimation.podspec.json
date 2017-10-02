@@ -1,6 +1,6 @@
 {
   "name": "JRMFloatingAnimation",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "summary": "A floating animation that can be used for bubbles, clouds, music notes, or whatever your heart desires.",
   "description": "Animation used to create \"floating\" UIImageViews, similar to the love animation in the Periscope app. Done via UIBezierPath and CAKeyframeAnimation.",
   "homepage": "https://github.com/carleihar/JRMFloatingAnimation",
@@ -16,16 +16,12 @@
   },
   "source": {
     "git": "https://github.com/carleihar/JRMFloatingAnimation.git",
-    "tag": "0.1.0"
+    "tag": "0.1.2"
   },
+  "social_media_url": "https://twitter.com/carleihar",
   "platforms": {
     "ios": "7.0"
   },
   "requires_arc": true,
-  "source_files": "Pod/Classes/**/*",
-  "resource_bundles": {
-    "JRMFloatingAnimation": [
-      "Pod/Assets/*.png"
-    ]
-  }
+  "source_files": "Pod/Classes/**/*"
 }

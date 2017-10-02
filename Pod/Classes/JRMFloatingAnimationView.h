@@ -28,6 +28,11 @@ typedef NS_ENUM(NSInteger, JRMFloatingShape) {
  */
 @property CGFloat startingPointWidth;
 /**
+ * Reverses the floating animation so that objects appear to fall (sink) rather than float.
+ * Default is false.
+ */
+@property BOOL objectsShouldSink;
+/**
  *  The MAXIMUM height that the animation may go.
  *  Default is the distance from the top of the frame to the starting point y value.
  */
@@ -35,7 +40,7 @@ typedef NS_ENUM(NSInteger, JRMFloatingShape) {
 /**
  *  The minimum height that the animation may go.
  *  If this is larger than the maxAnimationHeight, they will swap.
- *  Default max height * 1/3
+ *  Default max height * 1/3.
  */
 @property CGFloat minAnimationHeight;
 /**
@@ -104,6 +109,10 @@ typedef NS_ENUM(NSInteger, JRMFloatingShape) {
  *  At least one SQUARE image must be added.
  */
 - (void)addImage:(UIImage *)image;
+/**
+ *  Removes all images.
+ */
+- (void)removeAllImages;
 
 /**
  *  "Release" a floating object.
