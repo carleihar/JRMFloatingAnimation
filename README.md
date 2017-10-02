@@ -13,6 +13,8 @@ JRMFloatingAnimation is an ObjC library used to create floating image views:
 
 ![Balloons](http://i.imgur.com/0yiav9V.gif) ![Tractor](http://i.imgur.com/2BOmIcQ.gif)
 
+![Sinking Animation](https://i.imgur.com/5u2kbl0.gif)
+
 ## Usage
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
